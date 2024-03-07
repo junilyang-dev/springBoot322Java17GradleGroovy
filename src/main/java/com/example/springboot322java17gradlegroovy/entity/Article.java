@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Entity //DB가 해당 객체를 인식 가능
-@NoArgsConstructor
+@NoArgsConstructor // 디폴트 생성자 추가
 @AllArgsConstructor//생성자 자동생성
 @ToString//toString 자동생성
 public class Article {
