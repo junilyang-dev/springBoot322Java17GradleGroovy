@@ -37,7 +37,8 @@ public class ArticleController {
         Article saved =  articleRepository.save(article);
         //System.out.println(saved.toString());
         log.info(saved.toString());
-        return "";
+        // 리다이렉트 적용: 생성 후, 브라우저가 해당 URL로 재요청
+        return "redirect:/articles/" + saved.getId();
     }
 
     @GetMapping("/articles/{id}") // 해당 URL요청을 처리 선언
