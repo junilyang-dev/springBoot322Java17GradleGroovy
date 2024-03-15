@@ -11,7 +11,8 @@
     {{#articleList}}
         <tr>
             <th>{{id}}</th>
-            <td>{{title}}</td>
+            <!-- 제목에 링크 걸기 -->
+            <td><a href="/articles/{{id}}">{{title}}</a></td>
             <td>{{content}}</td>
         </tr>
     {{/articleList}}
