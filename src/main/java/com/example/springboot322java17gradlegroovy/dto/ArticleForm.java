@@ -7,6 +7,7 @@ import lombok.ToString;
 @AllArgsConstructor//생성자 자동생성
 @ToString//toString 자동생성
 public class ArticleForm {
+    private Long id;
     private String title;
     private String content;
 
@@ -24,6 +25,6 @@ public class ArticleForm {
     }*/
 
     public Article toEntity() {
-        return new Article(null,title,content);
+        return new Article(id, title, content);
     }
 }
