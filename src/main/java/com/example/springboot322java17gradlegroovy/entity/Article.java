@@ -1,9 +1,6 @@
 package com.example.springboot322java17gradlegroovy.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,7 +13,7 @@ import lombok.ToString;
 @Getter// 롬복으로 게터 추가
 public class Article {
     @Id //대표값 지정
-    @GeneratedValue // 자동생성 어노테이션
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // 자동 생성 전략
     private Long id;
     @Column
     private String title;
