@@ -20,22 +20,6 @@ public class Article {
     @Column
     private String content;
 
-
-    /*public Article(Long id, String title, String content) {
-        this.id = id;
-        this.title = title;
-        this.content = content;
-    }*/
-
-    /*@Override
-    public String toString() {
-        return "Article{" +
-                "id='" + id + '\'' +
-                ", title='" + title + '\'' +
-                ", content='" + content + '\'' +
-                '}';
-    }*/
-
     public void patch(Article article) {
         if (article.title != null)
             this.title = article.title;

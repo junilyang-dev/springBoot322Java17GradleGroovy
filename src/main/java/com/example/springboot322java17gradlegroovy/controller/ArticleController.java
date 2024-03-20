@@ -19,12 +19,10 @@ import java.util.List;
 public class ArticleController {
     @Autowired //스프링 부트가 미리 생성해 놓은 객체를 가져다가 자동 연결
     private ArticleRepository articleRepository;
-
     @GetMapping("/articles/new")
     public String newArticleForm(){
         return "/articles/new";
     }
-
     @PostMapping("/articles/create")
     public String createArticle(ArticleForm form) {
         log.info(form.toString());
