@@ -14,7 +14,8 @@
                         data-bs-article-id="{{articleId}}">수정</button>
                 <!-- 댓글 삭제 버튼 -->
                 <button type="button"
-                        class="btn btn-sm btn-outline-danger comment-delete-btn">삭제</button>
+                        class="btn btn-sm btn-outline-danger comment-delete-btn"
+                        data-comment-id="{{id}}">삭제</button>
             </div>
             <div class="card-body">
                 {{body}}
@@ -117,8 +118,12 @@
         // 삭제 버튼 이벤트를 처리
         commentDeleteBtns.forEach(btn => {
             // 각 버튼의 이벤트 처리를 등록
-            btn.addEventListener("click", () => {
-                console.log("삭제 버튼이 클릭되었습니다..!");
+            btn.addEventListener("click", (event) => {
+                // 이벤트 발생 요소를 선택
+                const commentDeleteBtn = event.target;
+                // 삭제 댓글 id 가져오기
+                const commentId = commentDeleteBtn.getAttribute("data-comment-id");
+                console.log(`삭제 버튼 클릭: ${commentId}번 댓글`);
             });
         });
     }
