@@ -1,5 +1,8 @@
 package com.example.springboot322java17gradlegroovy.ioc;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class IngredientFactory {
     public Ingredient get(String menu) {
         switch (menu) {
