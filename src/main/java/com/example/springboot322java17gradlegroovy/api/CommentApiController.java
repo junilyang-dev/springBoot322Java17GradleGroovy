@@ -1,5 +1,6 @@
 package com.example.springboot322java17gradlegroovy.api;
 
+import com.example.springboot322java17gradlegroovy.annotation.RunningTime;
 import com.example.springboot322java17gradlegroovy.dto.CommentDto;
 import com.example.springboot322java17gradlegroovy.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +44,7 @@ public class CommentApiController {
     }
 
     // 댓글 삭제
+    @RunningTime
     @DeleteMapping("/api/comments/{id}")
     public ResponseEntity<CommentDto> delete(@PathVariable Long id) {
         // 서비스에게 위임
