@@ -6,9 +6,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
-class ChefTest {
+public class ChefTest {
+
     @Autowired
     IngredientFactory ingredientFactory;
+
     @Autowired
     Chef chef;
     @Test
@@ -25,6 +27,7 @@ class ChefTest {
         assertEquals(expected, food);
         System.out.println(food);
     }
+
     @Test
     void 스테이크_요리하기() {
         // 준비
@@ -39,6 +42,7 @@ class ChefTest {
         assertEquals(expected, food);
         System.out.println(food);
     }
+
     @Test
     void 크리스피_치킨_요리하기() {
         // 준비
