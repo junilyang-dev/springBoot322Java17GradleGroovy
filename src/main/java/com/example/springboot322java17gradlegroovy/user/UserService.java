@@ -24,10 +24,14 @@ public class UserService {
         if(optionalUserEntity.isPresent()) {
             userEntity = optionalUserEntity.get();
             boolean pwChk = HashUtil.verifyHash(password, userEntity.getPassword());
+            Map<String, Object> resultDataMap = new HashMap<>();
+            resultDataMap.put("userId", userEntity.getUserId());
+            resultDataMap.put("userSq", userEntity.getUserSq());
+            resultDataMap.put("email", userEntity.getEmail());
             if(pwChk) {//로그인 성공
                 resultMap.put("success", true);
                 resultMap.put("message", "로그인에 성공하였습니다.");
-                resultMap.put("data", userEntity);
+                resultMap.put("data", resultDataMap);
                 return resultMap;
             }else{//비밀번호가 일치하지 않음
                 resultMap.put("success", false);

@@ -4,10 +4,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -19,12 +16,13 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/login")
+    @PostMapping("/login")
     public ResponseEntity<Map<String, Object>> login(
-            @RequestParam("userId") String userId,
-            @RequestParam("password") String password
+            @RequestBody LoginRequest loginRequest
     ) {
         Map<String, Object> resultMap = new HashMap<>();
+        String userId = loginRequest.getUserId();
+        String password = loginRequest.getPassword();
         if(userId == null) {
             resultMap.put("success", false);
             resultMap.put("message", "사용자ID를 입력해주세요.");
