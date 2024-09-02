@@ -60,9 +60,10 @@ public class JwtUtil {
     }
 
     // 리프레시 토큰을 생성하는 메서드
-    public static String generateRefreshToken(String userId) {
+    public static String generateRefreshToken(String userId, String ipAddress) {
         return Jwts.builder()
                 .setSubject(userId)
+                .claim("ip", ipAddress)
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(System.currentTimeMillis() + REFRESH_TOKEN_EXPIRATION_TIME))
                 .signWith(SignatureAlgorithm.HS256, key)
