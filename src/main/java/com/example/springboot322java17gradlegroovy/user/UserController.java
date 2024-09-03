@@ -91,4 +91,23 @@ public class UserController {
             return "토큰 만료";
         }
     }
+
+    @GetMapping("/logout")
+    public boolean logout(HttpServletRequest request) {
+        Map<String, Object> resultMap = new HashMap<>();
+        // JWT 토큰 검증 시작
+        String authorizationHeader = request.getHeader("Authorization"); // 요청 헤더에서 Authorization 헤더 값을 가져옴
+        if (authorizationHeader == null || !authorizationHeader.startsWith("Bearer ")) { // Authorization 헤더가 없거나 Bearer로 시작하지 않으면
+            return false;
+        }
+        String jwtToken = authorizationHeader.substring(7); // "Bearer " 다음의 토큰 부분만 추출
+        boolean tokenChk = JwtUtil.validateToken(jwtToken);
+        if(tokenChk) {
+            String userId = JwtUtil.getUserIdFromToken(jwtToken); // 토큰에서 사용자 ID를 추출
+            JwtUtil.invalidateToken(userId);
+            return true;
+        }else{
+            return false;
+        }
+    }
 }
