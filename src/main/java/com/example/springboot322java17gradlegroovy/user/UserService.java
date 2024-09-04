@@ -51,4 +51,13 @@ public class UserService {
             return resultMap;
         }
     }
+
+    public UserEntity getUserByUserId(String userId) {
+        UserEntity userEntity = new UserEntity();
+        Optional<UserEntity> optionalUserEntity = userRepository.findByUserId(userId);
+        if(optionalUserEntity.isPresent()) {
+            userEntity = optionalUserEntity.get();
+        }
+        return userEntity;
+    }
 }

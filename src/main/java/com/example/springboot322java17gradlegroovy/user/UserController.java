@@ -2,6 +2,7 @@ package com.example.springboot322java17gradlegroovy.user;
 
 import com.example.springboot322java17gradlegroovy.config.JwtUtil;
 import io.jsonwebtoken.JwtException;
+import io.swagger.v3.oas.annotations.Operation;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -108,6 +109,37 @@ public class UserController {
             return true;
         }else{
             return false;
+        }
+    }
+
+    @GetMapping("/refreshtoken") // HTTP GET 요청을 처리하는 메서드, URL 경로는 "/refreshToken"
+    @Operation(summary = "JWT 토큰 갱신", description = "리프레시 토큰을 사용하여 새로운 액세스 토큰을 발급.")
+    public ResponseEntity<LoginTokenDTO> refreshToken(HttpServletRequest request) { // HTTP 요청 객체를 받음
+        try {
+            String refreshTokenHeader = request.getHeader("Refresh-Token"); // 요청 헤더에서 리프레시 토큰 값을 가져옴
+            if (refreshTokenHeader == null) {
+                LoginTokenDTO loginTokenDTO = new LoginTokenDTO(); // 리프레시 토큰이 없으면 응답 객체에 null 설정
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(loginTokenDTO); // HTTP 401 상태 코드와 함께 응답 반환
+            }
+            String refreshToken = refreshTokenHeader; // 리프레시 토큰 값 설정
+            Boolean tokenChk = JwtUtil.validateToken(refreshToken); // 리프레시 토큰 검증
+            if(!tokenChk) {
+                LoginTokenDTO loginTokenDTO = new LoginTokenDTO(); // 토큰이 유효하지 않으면 응답 객체에 null 설정
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(loginTokenDTO); // HTTP 401 상태 코드와 함께 응답 반환
+            }
+            String userIdFromRefreshToken = JwtUtil.getUserIdFromToken(refreshToken); // 리프레시 토큰에서 사용자 ID 추출
+
+            UserEntity userEntity = userService.getUserByUserId(userIdFromRefreshToken);
+            if (userEntity == null) {
+                LoginTokenDTO loginTokenDTO = new LoginTokenDTO(); // 저장된 토큰과 일치하지 않으면 응답 객체에 null 설정
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(loginTokenDTO); // HTTP 401 상태 코드와 함께 응답 반환
+            }
+            String clientIp = request.getRemoteAddr();
+            String newAccessToken = JwtUtil.generateAccessToken(userIdFromRefreshToken, clientIp); // 새로운 액세스 토큰 생성
+            LoginTokenDTO loginTokenDTO = new LoginTokenDTO(newAccessToken, null); // 응답 객체에 새로운 액세스 토큰 설정
+            return ResponseEntity.ok(loginTokenDTO); // HTTP 200 상태 코드와 함께 응답 반환
+        } catch (JwtException e) { // JWT 예외가 발생하면
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null); // HTTP 401 상태 코드와 함께 응답 반환
         }
     }
 }
