@@ -106,7 +106,7 @@ public class UserController {
         try {
             tokenChk = JwtUtil.validateToken(jwtToken); // 토큰을 검증
         } catch (ExpiredJwtException e) { // 토큰 만료 시 예외 처리
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("토큰이 만료되었습니다.다시 로그인해 주세요."); // 401 Unauthorized 응답
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("토큰 만료"); // 401 Unauthorized 응답
         } catch (Exception e) { // 기타 예외 처리
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("유효하지 않은 토큰입니다."); // 401 Unauthorized 응답
         }
@@ -115,7 +115,7 @@ public class UserController {
             String userId = JwtUtil.getUserIdFromToken(jwtToken); // 토큰에서 사용자 ID를 추출
             return ResponseEntity.ok(userId); // 정상적으로 사용자 ID를 반환
         } else {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("토큰이 만료되었습니다. <br> 다시 로그인해 주세요."); // 401 Unauthorized 응답
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("토큰 만료"); // 401 Unauthorized 응답
         }
     }
 
