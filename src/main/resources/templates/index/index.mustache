@@ -45,25 +45,33 @@
                     .then(response => {
                         if (response.ok) {
                             return response.text();
+                        } else if (response.status === 401) {
+                            // 토큰 만료 시 처리
+                            return response.text().then((errorMessage) => {
+                                localStorage.clear();
+                                throw new Error(errorMessage); // 서버에서 반환한 메시지를 에러로 던짐
+                            });
                         } else {
                             throw new Error('로그인이 필요합니다.');
                         }
                     })
                     .then(data => {
                         contentDiv.innerHTML = `<p>환영합니다, ${data}님!</p>
-                        <p id="timer">30:00</p>
-                        <button type="button" class="btn btn-warning w-100" onclick="logout()">Logout</button>
-                        <button type="button" class="btn btn-success mt-2 w-100" onclick="refresh()">연장</button>`;
+                            <p id="timer">30:00</p>
+                            <button type="button" class="btn btn-warning w-100" onclick="logout()">Logout</button>
+                            <button type="button" class="btn btn-success mt-2 w-100" onclick="updateAccessToken()">연장</button>
+                        `;
 
                         // 타이머 업데이트 시작
                         initializeTimer();
                     })
                     .catch(error => {
                         console.error('Error:', error);
+                        // 에러 메시지와 로그인 버튼 표시
                         contentDiv.innerHTML = `
-                    <p>${error.message}</p>
-                    <button type="button" class="btn btn-primary w-100" onclick="redirectToLogin()">Login</button>
-                `;
+                            <p>${error.message}</p>
+                            <button type="button" class="btn btn-primary w-100" onclick="redirectToLogin()">Login</button>
+                        `;
                     });
         }
     }
@@ -100,7 +108,7 @@
                 });
     }
 
-    function refresh() {
+    function updateAccessToken() {
         const accessToken = localStorage.getItem('accessToken');
         const refreshToken = localStorage.getItem('refreshToken');
         fetch('/api/v1/user/refreshtoken', {
