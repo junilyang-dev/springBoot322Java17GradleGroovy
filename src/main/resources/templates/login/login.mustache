@@ -35,6 +35,7 @@
     inputPassword.addEventListener('keydown', function(event) {
         keydownEnter(event);
     });
+
     function keydownEnter(e) {
         if(e.keyCode == 13) { // enter는 13이다!
             submitForm();
@@ -42,8 +43,21 @@
     }
 
     function submitForm() {
-        const userId = document.getElementById("userId").value;
-        const password = document.getElementById("password").value;
+        const userId = document.getElementById("userId").value.trim();
+        const password = document.getElementById("password").value.trim();
+
+        // 사용자 ID와 비밀번호 유효성 검사
+        if (!userId) {
+            alert("사용자ID를 입력해주세요.");
+            document.getElementById("userId").focus();
+            return; // 함수 종료
+        }
+
+        if (!password) {
+            alert("비밀번호를 입력해주세요.");
+            document.getElementById("password").focus();
+            return; // 함수 종료
+        }
 
         fetch('/api/v1/user/login', {
             method: 'POST',

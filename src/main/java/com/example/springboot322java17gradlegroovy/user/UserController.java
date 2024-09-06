@@ -5,6 +5,8 @@ import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.JwtException;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.servlet.http.HttpServletRequest;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +20,7 @@ import java.util.Objects;
 @RestController
 @RequestMapping("/api/v1/user")
 public class UserController {
+    private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
     @Autowired
     private UserService userService;
@@ -57,19 +60,20 @@ public class UserController {
 
         Map<String, Object> resultMap = new HashMap<>();
         String userId = loginRequest.getUserId();
-        if(userId == null) {
+        if(userId == null || userId.isEmpty()) {
             resultMap.put("success", false);
             resultMap.put("message", "사용자ID를 입력해주세요.");
             resultMap.put("data", "");
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(resultMap);
         }
         String password = loginRequest.getPassword();
-        if(password == null) {
+        if(password == null || password.isEmpty()) {
             resultMap.put("success", false);
             resultMap.put("message", "비밀번호를 입력해주세요.");
             resultMap.put("data", "");
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(resultMap);
         }
+        logger.info("id:" + userId + ",pw:"+password);
         resultMap = userService.loginUsers(userId, password, clientIp);
         return ResponseEntity.ok(resultMap);
     }
