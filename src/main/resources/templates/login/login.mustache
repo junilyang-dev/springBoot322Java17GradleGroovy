@@ -27,6 +27,20 @@
 </html>
 
 <script>
+    const inputUserId = document.getElementById("userId");
+    inputUserId.addEventListener('keydown', function(event) {
+        keydownEnter(event);
+    });
+    const inputPassword = document.getElementById("password");
+    inputPassword.addEventListener('keydown', function(event) {
+        keydownEnter(event);
+    });
+    function keydownEnter(e) {
+        if(e.keyCode == 13) { // enter는 13이다!
+            submitForm();
+        }
+    }
+
     function submitForm() {
         const userId = document.getElementById("userId").value;
         const password = document.getElementById("password").value;
