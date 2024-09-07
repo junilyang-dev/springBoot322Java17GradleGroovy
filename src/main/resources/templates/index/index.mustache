@@ -112,6 +112,8 @@
                         if (data) {
                             this.showToast("로그아웃되었습니다.");
                             localStorage.clear();
+                            clearInterval(indexUserCheck.timerInterval);
+                            indexUserCheck.timerInterval = null;
                             this.loginCheck();
                         }
                     })
@@ -152,6 +154,7 @@
 
         initializeTimer() {
             clearInterval(this.timerInterval); // 이전 타이머 중지
+            indexUserCheck.timerInterval = null;
 
             const token = this.accessToken;
             if (!token) return;
@@ -169,6 +172,7 @@
                 if (timeLeft <= 0) {
                     clearInterval(this.timerInterval);
                     localStorage.clear();
+                    indexUserCheck.timerInterval = null;
                     this.contentDiv.innerHTML = this.contentLogin;
                     this.showToast("토큰이 만료되었습니다.");
                     return;
