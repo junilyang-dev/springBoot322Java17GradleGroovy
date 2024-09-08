@@ -1,0 +1,21 @@
+<!-- Toast 컴포넌트 추가 -->
+<div class="toast-container position-fixed top-0 p-3">
+    <div id="customToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+            <strong class="me-auto">알림</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body" id="toastMessage">
+            <!-- 오류 메시지가 여기에 표시됩니다 -->
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    function showToast(message) {
+        const toastMessage = document.getElementById('toastMessage');
+        toastMessage.textContent = message;
+        const toastElement = new bootstrap.Toast(document.getElementById('customToast'));
+        toastElement.show();
+    }
+</script>
