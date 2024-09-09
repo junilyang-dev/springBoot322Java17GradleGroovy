@@ -33,6 +33,7 @@
         contentLogin:`
                     <p>로그인이 필요합니다.</p>
                     <button type="button" class="btn btn-primary w-100" onclick="indexUserCheck.redirectToLogin()">Login</button>
+                    <button type="button" class="btn btn-secondary mt-2 w-100" onclick="indexUserCheck.redirectToJoin()">Join</button>
                 `,
         loginCheck() {
             this.accessToken = localStorage.getItem('accessToken');
@@ -79,7 +80,9 @@
         redirectToLogin() {
             window.location.href = '/login';
         },
-
+        redirectToJoin() {
+            window.location.href = '/join';
+        },
         logout() {
             fetch('/api/v1/user/logout', {
                 method: 'GET',

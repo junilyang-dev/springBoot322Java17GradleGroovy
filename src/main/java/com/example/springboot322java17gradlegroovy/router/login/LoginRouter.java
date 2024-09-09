@@ -10,4 +10,9 @@ public class LoginRouter {
     public String login(){
         return "login/login";//templates/login/login.mustache
     }
+
+    @GetMapping("/join")
+    public String join() {
+        return "login/join";//templates/login/join.mustache
+    }
 }
