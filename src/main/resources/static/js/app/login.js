@@ -73,20 +73,19 @@ function vaildation(getId, korId, length, type) {
     // 비었는지 확인
     if(!getVal){
         showToast(korId + "을(를) 입력해주세요.");
-        $(obj).val("").focus();
+        $(getObject).val("").focus();
         return false; // 검증 실패 시 false 반환
     }
     // 지정한 길이 안인지 확인
     if (getVal.length > length) {
         showToast(korId + "은(는) " + length + "자 이내로 입력해주세요.");
-        $(obj).val("").focus();
+        $(getObject).val("").focus();
         return false; // 검증 실패 시 false 반환
     }
-    // const regExp = /[\s]/g;;
-    // if(!regExp.test(getVal)){
+    // const regExp = /\s/;
+    // if(regExp.test(getVal)){
     //     showToast(korId + "에 공백을 넣을 수 없습니다.");
-    //     getObject.value = ""; // 값 초기화
-    //     getObject.focus();
+    //     $(getObject).val("").focus();
     //     return false; // 검증 실패 시 false 반환
     // }
     let check = true;
@@ -136,7 +135,7 @@ function vaildation(getId, korId, length, type) {
 
     }
     if(!check) {
-        $(obj).val("").focus();
+        $(getObject).val("").focus();
         return false; // 검증 실패 시 false 반환
     }
     return true; // 검증 통과 시 true 반환
