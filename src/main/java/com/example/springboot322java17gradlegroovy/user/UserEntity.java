@@ -10,13 +10,13 @@ public class UserEntity {
     @Column(name = "user_sq")
     private Long userSq;
 
-    @Column(name = "user_id")
+    @Column(name = "user_id", length = 30)
     private String userId;
 
-    @Column(name = "password")
+    @Column(name = "password", columnDefinition = "LONGTEXT")
     private String password;
 
-    @Column(name = "email")
+    @Column(name = "email", length = 50)
     private String email;
 
     public Long getUserSq() {
