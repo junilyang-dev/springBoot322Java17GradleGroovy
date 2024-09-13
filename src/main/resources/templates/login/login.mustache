@@ -12,12 +12,13 @@
                     <label for="password" class="form-label">Password</label>
                     <input type="password" class="form-control" id="password" placeholder="Enter password" required>
                 </div>
-                <button type="button" class="btn btn-primary w-100" onclick="submitForm()">Login</button>
+                <button type="button" class="btn btn-primary w-100" onclick="loginForm.submitForm()">Login</button>
             </form>
         </div>
     </div>
 </div>
 {{>utility/toast}}
 <script src="/js/app/login.js"></script>
+<script src="/js/utility/regexpCheck.js"></script>
 {{>layouts/footer1}}
 
