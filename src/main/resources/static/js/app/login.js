@@ -27,10 +27,10 @@ let loginForm = {
         const password = document.getElementById("password").value.trim();
 
         // 사용자 ID와 비밀번호 유효성 검사
-        if (!vaildation("userId", "사용자ID", 30, "Engnum")) {
+        if (!regCheck($('#userId'), 'Engnum')) {
             return; // 길이 검증에 실패하면 함수를 중지
         }
-        if (!vaildation("password", "비밀번호", 30, "none")) {
+        if (!regCheck($('#password'), 'none')) {
             return; // 길이 검증에 실패하면 함수를 중지
         }
 
