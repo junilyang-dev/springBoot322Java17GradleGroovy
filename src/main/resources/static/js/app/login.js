@@ -19,7 +19,7 @@ let loginForm = {
             showToast("한글은 입력할 수 없다!");
         }
         if(e.keyCode == 13) { // enter는 13이다!
-            submitForm();
+            loginForm.submitForm();
         }
     },
     submitForm() {
@@ -52,7 +52,7 @@ let loginForm = {
                     window.location.href = '/index';
                 } else {
                     // 로그인 실패 시 메시지 출력
-                    showToast(data.message);
+                    showToast(data.message, 'text-danger');
                 }
             })
             .catch(error => console.error('Error:', error));
