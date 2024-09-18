@@ -15,7 +15,6 @@ import org.springframework.web.servlet.View;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 
 @RestController
 @RequestMapping("/api/v1/user")
@@ -29,7 +28,7 @@ public class UserController {
 
     @PostMapping("/login")
     public ResponseEntity<Map<String, Object>> login(
-            @RequestBody LoginRequest loginRequest,
+            @RequestBody UserRequest userRequest,
             HttpServletRequest request
     ) {
 
@@ -59,14 +58,14 @@ public class UserController {
         }
 
         Map<String, Object> resultMap = new HashMap<>();
-        String userId = loginRequest.getUserId();
+        String userId = userRequest.getUserId();
         if(userId == null || userId.isEmpty()) {
             resultMap.put("success", false);
             resultMap.put("message", "사용자ID를 입력해주세요.");
             resultMap.put("data", "");
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(resultMap);
         }
-        String password = loginRequest.getPassword();
+        String password = userRequest.getPassword();
         if(password == null || password.isEmpty()) {
             resultMap.put("success", false);
             resultMap.put("message", "비밀번호를 입력해주세요.");
@@ -153,5 +152,11 @@ public class UserController {
         } catch (JwtException e) { // JWT 예외가 발생하면
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null); // HTTP 401 상태 코드와 함께 응답 반환
         }
+    }
+
+    @PostMapping("/join")
+    public ResponseEntity<Map<String, Object>> joinUser(@RequestBody UserRequest userRequest) {
+        Map<String, Object> resultMap = new HashMap<>();
+        return ResponseEntity.ok(userService.joinUser(userRequest));
     }
 }

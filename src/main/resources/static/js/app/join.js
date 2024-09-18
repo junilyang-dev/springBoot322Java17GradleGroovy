@@ -26,4 +26,24 @@ function submitForm() {
         password.focus();
         return;
     }
+    fetch('/api/v1/user/join', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ userId: $('#userId').val(), password: $('#password').val(), email: $('#email').val() })
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                showToast(data.message);
+
+                // index 페이지로 이동
+                window.location.href = '/index';
+            } else {
+                // 로그인 실패 시 메시지 출력
+                showToast(data.message, 'text-danger');
+            }
+        })
+        .catch(error => console.error('Error:', error));
 }
