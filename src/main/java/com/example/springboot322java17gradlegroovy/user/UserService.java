@@ -60,4 +60,23 @@ public class UserService {
         }
         return userEntity;
     }
+
+    public Map<String, Object> joinUser(UserRequest userRequest) {
+        Map<String, Object> resultMap = new HashMap<>();
+        UserEntity userEntity = new UserEntity();
+        userEntity.setUserId(userRequest.getUserId());
+        userEntity.setPassword(HashUtil.hashWithGeneratedSalt(userRequest.getPassword()));
+        userEntity.setEmail(userRequest.getEmail());
+        userEntity = userRepository.save(userEntity);
+        if(userEntity.getUserSq() != null) {
+            resultMap.put("success", true);
+            resultMap.put("message", "회원가입이 완료되었습니다.");
+            resultMap.put("data", "");
+        }else{
+            resultMap.put("success", false);
+            resultMap.put("message", "회원가입 실패");
+            resultMap.put("data", "");
+        }
+        return resultMap;
+    }
 }
