@@ -63,6 +63,12 @@ public class UserService {
 
     public Map<String, Object> joinUser(UserRequest userRequest) {
         Map<String, Object> resultMap = new HashMap<>();
+        if(checkUserIdDuplicate(userRequest.getUserId())) {
+            resultMap.put("success", false);
+            resultMap.put("message", "해당 아이디와 동일한 아이디가 존재합니다. 다른 아이디를 사용해주세요.");
+            resultMap.put("data", "");
+            return resultMap;
+        }
         UserEntity userEntity = new UserEntity();
         userEntity.setUserId(userRequest.getUserId());
         userEntity.setPassword(HashUtil.hashWithGeneratedSalt(userRequest.getPassword()));
@@ -78,5 +84,14 @@ public class UserService {
             resultMap.put("data", "");
         }
         return resultMap;
+    }
+
+    /**
+     * loginId 중복 체크
+     * 회원가입 기능 구현 시 사용
+     * 중복되면 true return
+     */
+    public boolean checkUserIdDuplicate(String userId) {
+        return userRepository.existsByUserId(userId);
     }
 }

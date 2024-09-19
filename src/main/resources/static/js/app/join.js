@@ -41,7 +41,7 @@ function submitForm() {
                 // index 페이지로 이동
                 window.location.href = '/index';
             } else {
-                // 로그인 실패 시 메시지 출력
+                // 회원가입 실패 시 메시지 출력
                 showToast(data.message, 'text-danger');
             }
         })
