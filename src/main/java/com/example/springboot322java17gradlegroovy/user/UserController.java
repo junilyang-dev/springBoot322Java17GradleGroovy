@@ -4,12 +4,15 @@ import com.example.springboot322java17gradlegroovy.config.JwtUtil;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.JwtException;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.View;
 
@@ -155,7 +158,8 @@ public class UserController {
     }
 
     @PostMapping("/join")
-    public ResponseEntity<Map<String, Object>> joinUser(@RequestBody UserRequest userRequest) {
+    public ResponseEntity<Map<String, Object>> joinUser(
+            @Parameter(description = "회원가입", required = true) @Valid @RequestBody UserRequest userRequest) {
         Map<String, Object> resultMap = new HashMap<>();
         return ResponseEntity.ok(userService.joinUser(userRequest));
     }
