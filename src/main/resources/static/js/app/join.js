@@ -2,6 +2,13 @@ function submitForm() {
     const password = $('#password');
     const rePassword = $('#rePassword');
 
+    $('#userIdError').text('');
+    $('#userId').removeClass('is-invalid');
+    $('#passwordError').text('');
+    $('#password').removeClass('is-invalid');
+    $('#emailError').text('');
+    $('#email').removeClass('is-invalid');
+/*
     // 사용자 ID와 비밀번호, 비밀번호 확인, email 유효성 검사
     if (!regCheck($('#userId'), 'Engnum')) {
         return; // 길이 검증에 실패하면 함수를 중지
@@ -25,7 +32,7 @@ function submitForm() {
         rePassword.val('');
         password.focus();
         return;
-    }
+    }*/
     fetch('/api/v1/user/join', {
         method: 'POST',
         headers: {
@@ -41,6 +48,18 @@ function submitForm() {
                 // index 페이지로 이동
                 window.location.href = '/index';
             } else {
+                if(data.data === "userId") {
+                    $('#userIdError').text(data.message);//is-invalid
+                    $('#userId').addClass('is-invalid');
+                }
+                if(data.data === "password") {
+                    $('#passwordError').text(data.message);
+                    $('#password').addClass('is-invalid');
+                }
+                if(data.data === "email") {
+                    $('#emailError').text(data.message);
+                    $('#email').addClass('is-invalid');
+                }
                 // 회원가입 실패 시 메시지 출력
                 showToast(data.message, 'text-danger');
             }
