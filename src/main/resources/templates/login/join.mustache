@@ -6,18 +6,18 @@
             <form id="joinForm">
                 <div class="mb-3">
                     <label for="userId" class="form-label">UserId</label>
-                    <input type="text" class="form-control" id="userId" placeholder="Enter userId" autofocus required alt="사용자ID" maxlength="30">
+                    <input type="text" class="form-control" id="userId" placeholder="Enter userId" autofocus required alt="사용자ID" minlength="5" maxlength="30">
                     <div class="invalid-feedback" id="userIdError"></div> <!-- 오류 메시지를 출력할 div -->
                 </div>
                 <div class="mb-3">
                     <label for="password" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="password" placeholder="Enter password" required alt="비밀번호" maxlength="30">
+                    <input type="password" class="form-control" id="password" placeholder="Enter password" required alt="비밀번호" minlength="8" maxlength="30">
                     <div class="invalid-feedback" id="passwordError"></div> <!-- 오류 메시지를 출력할 div -->
                     <input type="password" class="form-control mt-2" id="rePassword" placeholder="Enter rePassword" required alt="비밀번호 확인" maxlength="30">
                 </div>
                 <div class="mb-3">
                     <label for="email" class="form-label">Email</label>
-                    <input type="text" class="form-control" id="email" placeholder="Enter email" autofocus required alt="이메일" maxlength="50">
+                    <input type="text" class="form-control" id="email" placeholder="Enter email" autofocus required alt="이메일" minlength="10" maxlength="50">
                     <div class="invalid-feedback" id="emailError"></div> <!-- 오류 메시지를 출력할 div -->
                 </div>
                 <button type="button" class="btn btn-primary w-100" onclick="submitForm()">Join</button>
