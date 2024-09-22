@@ -8,6 +8,7 @@
                     <label for="userId" class="form-label">UserId</label>
                     <input type="text" class="form-control" id="userId" placeholder="Enter userId" autofocus required alt="사용자ID" minlength="5" maxlength="30">
                     <div class="invalid-feedback" id="userIdError"></div> <!-- 오류 메시지를 출력할 div -->
+                    <button type="button" class="btn btn-primary mt-2 w-100" onclick="idCheckForm()">Check</button>
                 </div>
                 <div class="mb-3">
                     <label for="password" class="form-label">Password</label>
@@ -20,7 +21,7 @@
                     <input type="text" class="form-control" id="email" placeholder="Enter email" autofocus required alt="이메일" minlength="10" maxlength="50">
                     <div class="invalid-feedback" id="emailError"></div> <!-- 오류 메시지를 출력할 div -->
                 </div>
-                <button type="button" class="btn btn-primary w-100" onclick="submitForm()">Join</button>
+                <button type="button" id="btnJoin" class="btn btn-primary w-100" onclick="submitForm()" disabled>Join</button>
             </form>
         </div>
     </div>

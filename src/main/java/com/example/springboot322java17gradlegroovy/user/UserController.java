@@ -163,4 +163,21 @@ public class UserController {
         Map<String, Object> resultMap = new HashMap<>();
         return ResponseEntity.ok(userService.joinUser(userRequest));
     }
+
+    @GetMapping("/idcheck")
+    public ResponseEntity<Map<String, Object>> idCheck(
+            @Parameter(description = "사용자아이디", required = true) String id) {
+        Map<String, Object> resultMap = new HashMap<>();
+        boolean idcheck = userService.checkUserIdDuplicate(id);
+        if(!idcheck) {
+           resultMap.put("success", true);
+           resultMap.put("message", "사용가능한 아이디입니다.");
+           resultMap.put("data","");
+        }else{
+            resultMap.put("success", false);
+            resultMap.put("message", "해당 아이디와 동일한 아이디가 존재합니다. 다른 아이디를 사용해주세요.");
+            resultMap.put("data","userId");
+        }
+        return ResponseEntity.ok(resultMap);
+    }
 }

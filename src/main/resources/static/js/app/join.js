@@ -66,3 +66,42 @@ function submitForm() {
         })
         .catch(error => console.error('Error:', error));
 }
+
+function idCheckForm() {
+    $('#userIdError').text('');
+    $('#userId').removeClass('is-invalid');
+
+    if (!regCheck($('#userId'), 'Engnum')) {
+        return; // 길이 검증에 실패하면 함수를 중지
+    }
+    fetch(`/api/v1/user/idcheck?id=${encodeURIComponent($('#userId').val())}`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                showToast(data.message);
+                $("#btnJoin").attr("disabled",false);
+            } else {
+                $("#btnJoin").attr("disabled",true);
+                if(data.data === "userId") {
+                    $('#userIdError').text(data.message);//is-invalid
+                    $('#userId').addClass('is-invalid');
+                }
+                // 회원가입 실패 시 메시지 출력
+                showToast(data.message, 'text-danger');
+            }
+        })
+        .catch(error => console.error('Error:', error));
+}
+
+document.addEventListener('DOMContentLoaded', () => init());
+function init() {
+    $('#userId').on('input', function() {
+        // 값을 변경할 때마다 버튼을 비활성화
+        $('#btnJoin').prop('disabled', true);
+    });
+}
