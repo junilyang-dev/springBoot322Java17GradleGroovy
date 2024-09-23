@@ -7,6 +7,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class LoginRouter {
 
+    @GetMapping("/lgn")
+    public String lgn(Model model) {
+        model.addAttribute("pageTitle", "Login Page");
+        return "login/lgn";//templates/login/lgn.mustache
+    }
+
     @GetMapping("/login")
     public String login(Model model){
         model.addAttribute("pageTitle", "Login Page");

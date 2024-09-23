@@ -1,0 +1,66 @@
+{{>layouts/header1}}
+<link href="/css/lgn.css" rel="stylesheet" />
+<div class="formContainer">
+    <div class="signin">
+        <form>
+            <div class="logo">
+                <i class="fa fa-user-circle-o"></i>
+            </div>
+            <div class="input-group">
+                <i class="fa fa-envelope"></i>
+                <input type="text" placeholder="ID">
+            </div>
+
+            <div class="input-group">
+                <i class="fa fa-unlock-alt"></i>
+                <input type="password" placeholder="Password">
+            </div>
+            <button type="button">Sign In</button>
+        </form>
+        <a id="signup">sign up</a>
+    </div>
+
+    <div class="signup">
+        <form>
+            <div class="logo">
+                <i class="fa fa-user-circle-o"></i>
+            </div>
+            <div class="input-group">
+                <i class="fa fa-user"></i>
+                <input type="text" placeholder="ID">
+            </div>
+
+            <div class="input-group">
+                <i class="fa fa-unlock-alt"></i>
+                <input type="password" placeholder="Password">
+            </div>
+            <div class="input-group">
+                <i class="fa fa-unlock-alt"></i>
+                <input type="password" placeholder="Re-Password">
+            </div>
+
+            <div class="input-group">
+                <i class="fa fa-envelope"></i>
+                <input type="email" placeholder="Email">
+            </div>
+
+            <button type="button">Sign Up</button>
+        </form>
+    </div>
+</div>
+{{>utility/toast}}
+<script src="/js/utility/regexpCheck.js"></script>
+<script>
+    $(document).ready(function(){
+        $("#signup").on('click',function(){
+            var text = $(this).text();
+            $(".signin").toggleClass('moveup');
+            $(".signup").toggleClass('moveup');
+            $(this).text(
+                    text == "sign up"?"sign in":"sign up"
+            ).toggleClass("active");
+        });
+    });
+</script>
+{{>layouts/footer1}}
+
