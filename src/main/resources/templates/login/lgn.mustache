@@ -2,65 +2,55 @@
 <link href="/css/lgn.css" rel="stylesheet" />
 <div class="formContainer">
     <div class="signin">
-        <form>
+        <form id="loginForm">
             <div class="logo">
                 <i class="fa fa-user-circle-o"></i>
             </div>
             <div class="input-group">
                 <i class="fa fa-envelope"></i>
-                <input type="text" placeholder="ID">
+                <input type="text" placeholder="ID" id="lgnUserId" required alt="사용자아이디" maxlength="30">
             </div>
 
             <div class="input-group">
                 <i class="fa fa-unlock-alt"></i>
-                <input type="password" placeholder="Password">
+                <input type="password" placeholder="Password" id="lgnPassword" required alt="비밀번호" maxlength="30">
             </div>
-            <button type="button">Sign In</button>
+            <button type="button" onclick="loginForm.submitForm()">Sign In</button>
         </form>
         <a id="signup">sign up</a>
     </div>
 
     <div class="signup">
-        <form>
+        <form id="joinForm">
             <div class="logo">
                 <i class="fa fa-user-circle-o"></i>
             </div>
             <div class="input-group">
                 <i class="fa fa-user"></i>
-                <input type="text" placeholder="ID">
+                <input type="text" style="width:75%;" placeholder="ID" id="userId" required alt="사용자아이디" minlength="5" maxlength="30">
+                <button type="button" style="width:25%;margin-top:0;padding:0;border-radius:50px;" class="btn btn-primary" onclick="joinForm.idCheckForm()">Check</button>
             </div>
 
             <div class="input-group">
                 <i class="fa fa-unlock-alt"></i>
-                <input type="password" placeholder="Password">
+                <input type="password" class="form-control" placeholder="Password" id="password" required alt="비밀번호" minlength="8" maxlength="30">
             </div>
             <div class="input-group">
                 <i class="fa fa-unlock-alt"></i>
-                <input type="password" placeholder="Re-Password">
+                <input type="password" placeholder="Re-Password" id="rePassword" required alt="비밀번호 확인" minlength="8" maxlength="30">
             </div>
 
             <div class="input-group">
                 <i class="fa fa-envelope"></i>
-                <input type="email" placeholder="Email">
+                <input type="email" placeholder="Email" id="email" alt="이메일" minlength="10" maxlength="50">
             </div>
 
-            <button type="button">Sign Up</button>
+            <button type="button" id="btnJoin"  onclick="joinForm.submitForm()" disabled>Sign Up</button>
         </form>
     </div>
 </div>
 {{>utility/toast}}
 <script src="/js/utility/regexpCheck.js"></script>
-<script>
-    $(document).ready(function(){
-        $("#signup").on('click',function(){
-            var text = $(this).text();
-            $(".signin").toggleClass('moveup');
-            $(".signup").toggleClass('moveup');
-            $(this).text(
-                    text == "sign up"?"sign in":"sign up"
-            ).toggleClass("active");
-        });
-    });
-</script>
+<script src="/js/app/lgn.js"></script>
 {{>layouts/footer1}}
 

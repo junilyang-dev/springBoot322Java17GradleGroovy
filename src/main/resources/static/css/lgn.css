@@ -138,3 +138,8 @@ body {
   display: block;
   color: #fff;
 }
+#btnJoin:disabled {
+  background-color: #d3d3d3; /* 회색으로 배경 색상 변경 */
+  color: #808080; /* 텍스트 색상도 회색으로 변경 */
+  cursor: not-allowed; /* 마우스 커서를 '금지' 모양으로 변경 */
+}
