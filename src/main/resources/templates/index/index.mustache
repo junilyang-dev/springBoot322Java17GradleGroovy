@@ -1,17 +1,18 @@
 {{>layouts/header1}}
-<div class="d-flex align-items-center justify-content-center" style="height: 100vh; background-color: #f8f9fa;">
-    <div class="card shadow-sm" style="width: 300px;">
+<link href="/css/index.css" rel="stylesheet" />
+<div class="formContainer">
+    <div class="signin">
         <div class="card-body text-center">
             <h5 class="card-title">Index Page</h5>
-            <hr/>
+            <hr />
             <div id="content">
-                <!-- 여기에 동적으로 내용이 추가됩니다 -->
+                <!-- 동적으로 내용이 추가됩니다 -->
             </div>
         </div>
     </div>
 </div>
-
 {{>utility/toast}}
-<!-- index.js 추가 -->
+
+<!-- 스크립트 로드 -->
 <script src="/js/app/index.js"></script>
 {{>layouts/footer1}}

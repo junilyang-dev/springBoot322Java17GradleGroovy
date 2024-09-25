@@ -55,11 +55,11 @@ let indexUserCheck = {
     },
 
     redirectToLogin() {
-        window.location.href = '/login';
+        window.location.href = '/lgn';
     },
 
     redirectToJoin() {
-        window.location.href = '/join';
+        window.location.href = '/lgn';
     },
 
     logout() {
@@ -83,7 +83,7 @@ let indexUserCheck = {
                     localStorage.clear();
                     clearInterval(indexUserCheck.timerInterval);
                     indexUserCheck.timerInterval = null;
-                    this.loginCheck();
+                    this.redirectToLogin();
                 }
             })
             .catch(error => {
