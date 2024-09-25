@@ -59,6 +59,7 @@ let indexUserCheck = {
     },
 
     redirectToJoin() {
+        localStorage.setItem('btn', 'join');
         window.location.href = '/lgn';
     },
 

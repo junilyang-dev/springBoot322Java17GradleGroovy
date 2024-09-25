@@ -159,4 +159,8 @@ $(document).ready(function(){
             text == "sign up"?"sign in":"sign up"
         ).toggleClass("active");
     });
+    if(localStorage.getItem('btn') === "join") {
+        localStorage.removeItem('btn');
+        $("#signup").trigger('click');
+    }
 });
