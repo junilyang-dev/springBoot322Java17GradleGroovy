@@ -2,40 +2,53 @@ body {
     background-color: #1d2063;
 }
 
-.formContainer {
-    position: relative;
-    height: 450px;
-    width: 400px;
-    margin: auto;
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #1d2063;
+    color: white;
     position: fixed;
-    border-radius: 8px;
-    overflow: hidden;
-    left: 0;
-    right: 0;
     top: 0;
-    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    z-index: 1000; /* 상단에 고정 */
+}
+
+.navbar .nav-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.navbar .nav-buttons button {
+    border-radius: 20px;
+    background-color: white;
+    color: #f82363;
+    border: none;
+    padding: 5px 15px;
+    cursor: pointer;
+    font-size: 16px;
+    text-transform: uppercase;
+}
+
+.navbar .nav-buttons button:hover {
+    background-color: #f82363;
+    color: white;
+}
+
+.content {
+    margin-top: 100px; /* 상단바에 가려지지 않도록 여백 설정 */
+    padding: 20px;
+    text-align: center;
+    color: white;
 }
 
 .formContainer .signin {
     position: relative;
     top: 0;
     transition: all ease 0.5s;
-}
-
-.formContainer .logo {
-    height: 150px;
-    width: 150px;
-    margin: auto;
-    font-size: 140px;
-    text-align: center;
-    margin-bottom: 20px;
-    color: #ffffff;
-}
-
-.card-body {
-    background-color: #333aa5;
-    padding: 32px 20px;
-    border-radius: 8px;
 }
 
 #content p {
@@ -78,4 +91,3 @@ h5.card-title {
     background-color: #ffc107;
     color: black;
 }
-

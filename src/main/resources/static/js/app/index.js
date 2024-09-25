@@ -6,17 +6,32 @@ let indexUserCheck = {
     init() {
         this.loginCheck();
     },
-    //최초 로그인 버튼 html
-    contentLogin:`
-                    <p>로그인이 필요합니다.</p>
-                    <button type="button" class="btn btn-primary w-100" onclick="indexUserCheck.redirectToLogin()">Login</button>
-                    <button type="button" class="btn btn-secondary mt-2 w-100" onclick="indexUserCheck.redirectToJoin()">Join</button>
-                `,
+
+    // 로그인 여부에 따라 버튼을 동적으로 추가
+    setNavbarButtons(isLoggedIn, userName) {
+        let navButtons = document.getElementById('nav-buttons');
+        if (isLoggedIn) {
+            // 로그인이 된 상태일 때 (로그아웃, 타이머, 연장 버튼)
+            navButtons.innerHTML = `
+                <span>환영합니다, ${userName}님!</span>
+                <span id="timer">30:00</span>
+                <button type="button" class="btn btn-warning" onclick="indexUserCheck.logout()">Logout</button>
+                <button type="button" class="btn btn-success" onclick="indexUserCheck.updateAccessToken()">연장</button>
+            `;
+        } else {
+            // 로그인이 안 된 상태일 때 (로그인, 조인 버튼)
+            navButtons.innerHTML = `
+                <button type="button" class="btn btn-primary" onclick="indexUserCheck.redirectToLogin()">Login</button>
+                <button type="button" class="btn btn-secondary" onclick="indexUserCheck.redirectToJoin()">Join</button>
+            `;
+        }
+    },
+
     loginCheck() {
         this.accessToken = localStorage.getItem('accessToken');
         if (!this.accessToken) {
             // accessToken이 없을 때 로그인 페이지로 이동하는 버튼 제공
-            $('#content').html(this.contentLogin);
+            this.setNavbarButtons(false);  // 로그인이 안된 상태로 네비바 설정
         } else {
             // accessToken이 있을 때 사용자 정보를 가져옴
             fetch('/api/v1/user/test', {
@@ -29,23 +44,10 @@ let indexUserCheck = {
                 .then(response => {
                     if (response.ok) {
                         return response.text();
-                        //     } else if (response.status === 401) {
-                        //         $('#content').html(this.contentLogin);
-                        //         return response.text().then((errorMessage) => {
-                        //             localStorage.clear();
-                        //             showToast(errorMessage);
-                        //             throw new Error(errorMessage);
-                        //         });
-                        //     } else {
-                        //         throw new Error('로그인이 필요합니다.');
                     }
                 })
                 .then(data => {
-                    $('#content').html(`<p>환영합니다, ${data}님!</p>
-                        <p id="timer">30:00</p>
-                        <button type="button" class="btn btn-warning w-100" onclick="indexUserCheck.logout()">Logout</button>
-                        <button type="button" class="btn btn-success mt-2 w-100" onclick="indexUserCheck.updateAccessToken()">연장</button>
-                    `);
+                    this.setNavbarButtons(true, data);  // 로그인이 된 상태로 네비바 설정
                     this.initializeTimer();
                 })
                 .catch(error => {
@@ -84,7 +86,7 @@ let indexUserCheck = {
                     localStorage.clear();
                     clearInterval(indexUserCheck.timerInterval);
                     indexUserCheck.timerInterval = null;
-                    this.redirectToLogin();
+                    this.setNavbarButtons(false);  // 로그아웃 후 네비바 설정
                 }
             })
             .catch(error => {
@@ -143,8 +145,7 @@ let indexUserCheck = {
                 clearInterval(this.timerInterval);
                 localStorage.clear();
                 indexUserCheck.timerInterval = null;
-                //$('#content').html(this.contentLogin);
-                this.loginCheck();
+                this.setNavbarButtons(false);  // 타이머 만료 후 네비바 설정
                 showToast("토큰이 만료되었습니다.");
                 return;
             }

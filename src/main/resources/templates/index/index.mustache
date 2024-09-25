@@ -1,18 +1,25 @@
 {{>layouts/header1}}
-<link href="/css/index.css" rel="stylesheet" />
-<div class="formContainer">
-    <div class="signin">
-        <div class="card-body text-center">
-            <h5 class="card-title">Index Page</h5>
-            <hr />
-            <div id="content">
-                <!-- 동적으로 내용이 추가됩니다 -->
-            </div>
-        </div>
+<link href="/css/index.css" rel="stylesheet"/>
+<!-- 상단 네비게이션 바 -->
+<div class="navbar">
+    <div class="logo">
+        <h5 class="card-title">Index Page</h5>
+    </div>
+    <div class="nav-buttons" id="nav-buttons">
+        <!-- 여기 버튼들은 JS에서 동적으로 설정됩니다 -->
     </div>
 </div>
-{{>utility/toast}}
 
+<!-- 중앙에 콘텐츠를 위한 공간 -->
+<div class="content">
+    <h1>Welcome to the Index Page</h1>
+    <p>여기에 중앙 컨텐츠가 들어갈 수 있습니다.</p>
+    <div id="content">
+        <!-- 로그인 체크 및 타이머 등 동적으로 추가될 내용 -->
+    </div>
+</div>
+
+{{>utility/toast}}
 <!-- 스크립트 로드 -->
 <script src="/js/app/index.js"></script>
 {{>layouts/footer1}}
