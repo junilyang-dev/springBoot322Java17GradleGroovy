@@ -17,9 +17,22 @@ body {
     z-index: 1000; /* 상단에 고정 */
 }
 
-.navbar .nav-buttons {
-    display: flex;
-    gap: 10px;
+.nav-buttons {
+    display: flex; /* 플렉스 박스 사용 */
+    align-items: center; /* 수직 중앙 정렬 */
+    gap: 10px; /* 버튼과 텍스트 사이의 간격 */
+}
+
+.nav-buttons span {
+    font-size: 16px; /* 텍스트 크기 설정 */
+    vertical-align: middle; /* 텍스트가 수직 중앙에 위치하게 설정 */
+}
+
+.nav-buttons button {
+    vertical-align: middle; /* 버튼이 수직 중앙에 위치하게 설정 */
+    padding: 8px 16px; /* 버튼의 안쪽 여백을 조정하여 높이 맞추기 */
+    border-radius: 50px; /* 둥근 모서리 */
+    font-size: 14px; /* 버튼 텍스트 크기 */
 }
 
 .navbar .nav-buttons button {
