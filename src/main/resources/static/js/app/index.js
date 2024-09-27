@@ -115,7 +115,7 @@ let indexUserCheck = {
                 if (data) {
                     localStorage.setItem('accessToken', data.accessToken);
                     this.accessToken = data.accessToken;
-                    showToast("토큰이 갱신되었습니다.",'text-success');
+                    showToast("토큰이 갱신되었습니다.",'SUCCESS');
                     this.initializeTimer();
                 }
             })
