@@ -12,22 +12,22 @@ function regCheck(obj, type) {
     let df = hangeulCheck(_korNm);
     console.log(_minLength);
     if(!obj.val()) {
-        showToast(_korNm + (df === 0 ? '를' : '을') + " 입력해주세요.");
+        showToast(_korNm + (df === 0 ? '를' : '을') + " 입력해주세요.",'WARNING');
         obj.focus();
         return false;
     }
     if(obj.val().length < _minLength) {
-        showToast(_korNm + (df === 0 ? '는' : '은') + " " + _minLength + "자 이상 입력해주세요.");
+        showToast(_korNm + (df === 0 ? '는' : '은') + " " + _minLength + "자 이상 입력해주세요.",'WARNING');
         obj.focus();
         return false; // 검증 실패 시 false 반환
     }
     if(obj.val().length > _maxLength) {
-        showToast(_korNm + (df === 0 ? '는' : '은') + " " + _maxLength + "자 이내로 입력해주세요.");
+        showToast(_korNm + (df === 0 ? '는' : '은') + " " + _maxLength + "자 이내로 입력해주세요.",'WARNING');
         obj.focus();
         return false; // 검증 실패 시 false 반환
     }
     if(blankRegExp.test(obj.val())){
-        showToast(_korNm + "에 공백을 넣을 수 없습니다.");
+        showToast(_korNm + "에 공백을 넣을 수 없습니다.",'WARNING');
         obj.focus();
         return false; // 검증 실패 시 false 반환
     }
@@ -65,7 +65,7 @@ function regCheck(obj, type) {
         if(!regExp.test(obj.val())) {
             obj.val("")
             obj.focus();
-            showToast(msg);
+            showToast(msg,'WARNING');
             return false;
         }
     }
