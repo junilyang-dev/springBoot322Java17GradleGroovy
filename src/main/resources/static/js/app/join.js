@@ -43,7 +43,7 @@ function submitForm() {
         .then(response => response.json())
         .then(data => {
             if (data.success) {
-                showToast(data.message);
+                showToast(data.message, 'SUCCESS');
 
                 // index 페이지로 이동
                 window.location.href = '/index';
@@ -61,7 +61,7 @@ function submitForm() {
                     $('#email').addClass('is-invalid');
                 }
                 // 회원가입 실패 시 메시지 출력
-                showToast(data.message, 'text-danger');
+                showToast(data.message, 'DANGER');
             }
         })
         .catch(error => console.error('Error:', error));
@@ -83,7 +83,7 @@ function idCheckForm() {
         .then(response => response.json())
         .then(data => {
             if (data.success) {
-                showToast(data.message);
+                showToast(data.message,'SUCCESS');
                 $("#btnJoin").attr("disabled",false);
             } else {
                 $("#btnJoin").attr("disabled",true);
@@ -92,7 +92,7 @@ function idCheckForm() {
                     $('#userId').addClass('is-invalid');
                 }
                 // 회원가입 실패 시 메시지 출력
-                showToast(data.message, 'text-danger');
+                showToast(data.message, 'DANGER');
             }
         })
         .catch(error => console.error('Error:', error));
