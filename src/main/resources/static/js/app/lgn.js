@@ -12,11 +12,11 @@ let loginForm = {
     keydownEnter(e) {// 한글 또는 공백이 입력될 때 제거하는 함수
         if (e.keyCode === 32) { // 스페이스바를 감지
             e.preventDefault(); // 기본 동작(띄어쓰기)을 막음
-            showToast("공백은 입력할 수 없다!");
+            showToast("공백은 입력할 수 없다!",'WARNING');
         }
         if (e.keyCode === 229) { // 한글 입력 중간 상태를 감지
             e.preventDefault(); // 기본 동작을 막음
-            showToast("한글은 입력할 수 없다!");
+            showToast("한글은 입력할 수 없다!", 'WARNING');
         }
         if(e.keyCode == 13) { // enter는 13이다!
             loginForm.submitForm();
@@ -52,7 +52,7 @@ let loginForm = {
                     window.location.href = '/index';
                 } else {
                     // 로그인 실패 시 메시지 출력
-                    showToast(data.message, 'text-danger');
+                    showToast(data.message, 'DANGER');
                 }
             })
             .catch(error => console.error('Error:', error));
@@ -105,13 +105,13 @@ let joinForm = {
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
-                    showToast(data.message);
+                    showToast(data.message, 'SUCCESS');
 
                     // index 페이지로 이동
                     window.location.href = '/index';
                 } else {
                     // 회원가입 실패 시 메시지 출력
-                    showToast(data.message, 'text-danger');
+                    showToast(data.message, 'DANGER');
                 }
             })
             .catch(error => console.error('Error:', error));
@@ -132,7 +132,7 @@ let joinForm = {
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
-                    showToast(data.message);
+                    showToast(data.message, 'SUCCESS');
                     $("#btnJoin").attr("disabled",false);
                 } else {
                     $("#btnJoin").attr("disabled",true);
@@ -141,7 +141,7 @@ let joinForm = {
                         $('#userId').addClass('is-invalid');
                     }
                     // 회원가입 실패 시 메시지 출력
-                    showToast(data.message, 'text-danger');
+                    showToast(data.message, 'DANGER');
                 }
             })
             .catch(error => console.error('Error:', error));
