@@ -30,6 +30,7 @@ public class UserRequest {
     @Schema(example = "junilyang.dev@gmail.com")
     private String email;
 
+    private String tel;
 
     public UserRequest(String userId, String password) {
         this.userId = userId;

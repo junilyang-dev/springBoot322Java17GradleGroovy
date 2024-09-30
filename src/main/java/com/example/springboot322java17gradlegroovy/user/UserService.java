@@ -73,6 +73,7 @@ public class UserService {
         userEntity.setUserId(userRequest.getUserId());
         userEntity.setPassword(HashUtil.hashWithGeneratedSalt(userRequest.getPassword()));
         userEntity.setEmail(userRequest.getEmail());
+        userEntity.setTel(userRequest.getTel());
         userEntity = userRepository.save(userEntity);
         if(userEntity.getUserSq() != null) {
             resultMap.put("success", true);

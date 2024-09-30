@@ -100,7 +100,14 @@ let joinForm = {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ userId: $('#userId').val(), password: $('#password').val(), email: $('#email').val() })
+            body: JSON.stringify(
+                {
+                        userId: $('#userId').val(),
+                        password: $('#password').val(),
+                        email: $('#email').val(),
+                        tel: $('#tel').val()
+                        }
+            )
         })
             .then(response => response.json())
             .then(data => {
