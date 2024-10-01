@@ -66,6 +66,14 @@ let joinForm = {
             $('#btnJoin').prop('disabled', true);
         });
     },
+    refresh() {
+        $('#userId').val('');
+        $('#password').val('');
+        $('#rePassword').val('');
+        $('#email').val('');
+        $('#tel').val('');
+        $("#btnJoin").prop("disabled",true);
+    },
     submitForm() {
         const password = $('#password');
         const rePassword = $('#rePassword');
@@ -114,8 +122,9 @@ let joinForm = {
                 if (data.success) {
                     showToast(data.message, 'SUCCESS');
 
-                    // index 페이지로 이동
-                    window.location.href = '/index';
+                    $("#signup").trigger('click');
+
+                    joinForm.refresh();
                 } else {
                     // 회원가입 실패 시 메시지 출력
                     showToast(data.message, 'DANGER');
@@ -140,9 +149,9 @@ let joinForm = {
             .then(data => {
                 if (data.success) {
                     showToast(data.message, 'SUCCESS');
-                    $("#btnJoin").attr("disabled",false);
+                    $("#btnJoin").prop("disabled",false);
                 } else {
-                    $("#btnJoin").attr("disabled",true);
+                    $("#btnJoin").prop("disabled",true);
                     if(data.data === "userId") {
                         $('#userIdError').text(data.message);//is-invalid
                         $('#userId').addClass('is-invalid');
