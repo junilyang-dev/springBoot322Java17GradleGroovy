@@ -7,13 +7,13 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
-    background-color: #1d2063;
+    background-color: #2f3461;
     color: white;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    height: 60px;
+    height: 80px;
     z-index: 1000; /* 상단에 고정 */
 }
 
