@@ -12,4 +12,10 @@ public class IndexRouter {
         model.addAttribute("pageTitle", "Index Page");
         return "index/index";//templates/index/index.mustache
     }
+
+    @GetMapping("/mypage")
+    public String mypage(Model model) {
+        model.addAttribute("pageTitle", "My Page");
+        return "index/mypage";//templates/index/index.mustache
+    }
 }
