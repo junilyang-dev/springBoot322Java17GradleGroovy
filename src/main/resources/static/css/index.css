@@ -1,3 +1,8 @@
-body {
-    background-color: #c9c7c7;
+.content h1 {
+    font-size: 30px;
+    font-weight: 500;
+}
+
+.content p {
+    font-size: 20px;
 }

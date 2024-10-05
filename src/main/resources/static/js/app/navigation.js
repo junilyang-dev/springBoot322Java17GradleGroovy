@@ -17,6 +17,7 @@ let userCheck = {
                 <span id="timer">30:00</span>
                 <button type="button" class="btn btn-warning" onclick="userCheck.logout()">Logout</button>
                 <button type="button" class="btn btn-success" onclick="userCheck.updateAccessToken()">연장</button>
+                <button type="button" class="btn btn-primary" onclick="thema.toggle()">테마</button>
                 <a style="font-size:30px;" onclick="userCheck.redirectToMyPage()"> <i class="fa fa-user-circle-o"></i> </a>
             `;
         } else {
@@ -24,6 +25,7 @@ let userCheck = {
             navButtons.innerHTML = `
                 <button type="button" class="btn btn-primary" onclick="userCheck.redirectToLogin()">Login</button>
                 <button type="button" class="btn btn-secondary" onclick="userCheck.redirectToJoin()">Join</button>
+                <button type="button" class="btn btn-primary" onclick="thema.toggle()">테마</button>
             `;
         }
     },
@@ -166,4 +168,6 @@ let userCheck = {
 
 };
 
-document.addEventListener('DOMContentLoaded', () => userCheck.init());
+document.addEventListener('DOMContentLoaded', () => {
+    userCheck.init();
+});

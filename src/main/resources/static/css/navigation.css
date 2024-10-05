@@ -3,8 +3,8 @@
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
-    background-color: #2f3461;
-    color: white;
+    background-color: var(--nav-background);
+    color: var(--text-color);
     position: fixed;
     top: 0;
     left: 0;
@@ -33,8 +33,8 @@
 
 .navbar .nav-buttons button {
     border-radius: 20px;
-    background-color: white;
-    color: #f82363;
+    background-color: var(--button-background);
+    color: var(--button-text-color);
     border: none;
     padding: 5px 15px;
     cursor: pointer;
@@ -43,15 +43,8 @@
 }
 
 .navbar .nav-buttons button:hover {
-    background-color: #f82363;
-    color: white;
-}
-
-.content {
-    margin-top: 100px; /* 상단바에 가려지지 않도록 여백 설정 */
-    padding: 20px;
-    text-align: center;
-    color: white;
+    background-color: var(--button-text-color);
+    color: var(--button-background);
 }
 
 .formContainer .signin {
