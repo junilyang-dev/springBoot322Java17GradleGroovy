@@ -6,6 +6,8 @@
     --button-background: #4A5759;
     --button-text-color: #d9d6d6;
     --nav-background: #DEDBD2;
+    --lgn-color: #abc4c8;
+    --lgn-text-color: #929292;
 }
 
 /* 다크 테마 */
@@ -15,6 +17,8 @@
     --button-background: #ffffff;
     --button-text-color: #f82363;
     --nav-background: #2f3461;
+    --lgn-color: #333aa5;
+    --lgn-text-color: #ffffff;
 }
 
 

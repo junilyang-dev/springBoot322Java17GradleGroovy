@@ -18,7 +18,7 @@
   font-size: 140px;
   text-align: center;
   margin-bottom: 20px;
-  color: #ffffff;
+  color: var(--lgn-text-color);
   font-family: 'Roboto', sans-serif;
 }
 .formContainer .input-group {
@@ -35,7 +35,7 @@
   text-align: center;
   line-height: 20px;
   font-size: 14px;
-  color: #ffffff;
+  color: var(--lgn-text-color);
   left: 4px;
 }
 .formContainer .input-group input {
@@ -45,27 +45,27 @@
   height: 30px;
   outline: none;
   background-color: transparent;
-  border-bottom: 1px solid white;
+  border-bottom: 1px solid var(--lgn-text-color);
   font-family: 'Roboto', sans-serif;
-  color: #ffffff;
+  color: var(--lgn-text-color);
   padding-left: 30px;
 }
 .formContainer .input-group input::placeholder {
-  color: #ffffff;
+  color: var(--lgn-text-color);
 }
 .formContainer button[type="button"] {
   width: 100%;
   padding: 10px;
   border: none;
   border-radius: 50px;
-  background-color: #ffffff;
+  background-color: var(--lgn-text-color);
   font-size: 16px;
   text-transform: uppercase;
   margin-top: 20px;
   font-weight: 500;
   font-family: 'Roboto', sans-serif;
   letter-spacing: 4px;
-  color: #f82363;
+  color: var(--button-text-color);
 }
 .signin {
   position: relative;
@@ -73,7 +73,7 @@
   transition: all ease 0.5s;
 }
 .signin form {
-  background-color: #f82363;
+  background-color: var(--button-text-color);
   padding: 55px 20px;
 }
 .signup {
@@ -82,7 +82,7 @@
   transition: all ease 0.5s;
 }
 .signup form {
-  background-color: #333aa5;
+  background-color: var(--lgn-color);
   padding: 34px 20px;
 }
 .signup form .logo {
@@ -91,7 +91,7 @@
   width: 60px;
 }
 .signup form button[type="submit"] {
-  color: #333aa5;
+  color: var(--lgn-color);
 }
 /*toggle link*/
 #signup {
@@ -102,12 +102,12 @@
   padding: 20px 10px;
   text-decoration: none;
   text-transform: uppercase;
-  background-color: #333aa5;
-  color: #ffffff;
+  background-color: var(--lgn-color);
+  color: var(--lgn-text-color);
   font-family: 'Roboto', sans-serif;
 }
 #signup.active {
-  background-color: #f82363;
+  background-color: var(--button-text-color);
 }
 /*toogle classes*/
 .signin.moveup {
@@ -124,7 +124,7 @@
   right: 10px;
   margin: auto;
   text-align: center;
-  color: #fff;
+  color: var(--lgn-text-color);
   font-weight: 600;
   width: 200px;
   font-size: 1.2rem;
@@ -132,10 +132,15 @@
 .info a {
   font-size: 3rem;
   display: block;
-  color: #fff;
+  color: var(--lgn-text-color);
 }
 #btnJoin:disabled {
   background-color: #d3d3d3; /* 회색으로 배경 색상 변경 */
   color: #808080; /* 텍스트 색상도 회색으로 변경 */
   cursor: not-allowed; /* 마우스 커서를 '금지' 모양으로 변경 */
+}
+
+.mainLogo {
+  margin: 15px 20px; /* 위아래로 20px의 마진을 추가 */
+  display: inline-block; /* 로고가 정렬될 때 블록처럼 동작하게 만듦 */
 }
