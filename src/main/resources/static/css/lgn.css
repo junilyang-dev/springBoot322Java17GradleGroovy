@@ -144,3 +144,23 @@
   margin: 15px 20px; /* 위아래로 20px의 마진을 추가 */
   display: inline-block; /* 로고가 정렬될 때 블록처럼 동작하게 만듦 */
 }
+
+.thema_btn {
+  border-radius: 20px;
+  background-color: var(--button-background);
+  color: var(--button-text-color);
+  border: none;
+  padding: 5px 15px;
+  cursor: pointer;
+  font-size: 16px;
+  text-transform: uppercase;
+  float: right;
+  margin-right: 20px;
+  margin-top: 23px;
+  z-index: 1000;
+}
+
+.thema_btn:hover {
+  background-color: var(--button-text-color);
+  color: var(--button-background);
+}
