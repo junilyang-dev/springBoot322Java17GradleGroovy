@@ -8,6 +8,7 @@
     --nav-background: #DEDBD2;
     --lgn-color: #abc4c8;
     --lgn-text-color: #929292;
+    --mypage-menubar: #e7ce84;
 }
 
 /* 다크 테마 */
@@ -19,6 +20,7 @@
     --nav-background: #2f3461;
     --lgn-color: #333aa5;
     --lgn-text-color: #ffffff;
+    --mypage-menubar: #f82363;
 }
 
 

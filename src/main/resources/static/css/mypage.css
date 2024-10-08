@@ -1,0 +1,40 @@
+.page-container {
+    display: flex;
+    margin-top: 60px; /* 상단 네비게이션 바의 높이만큼 내려줌 */
+}
+
+.sidebar {
+    width: 200px; /* 세로 메뉴바의 너비 */
+    background-color: var(--lgn-color); /* 세로 메뉴바 배경색 */
+    padding: 20px;
+    height: calc(100vh - 80px); /* 네비게이션 바 높이를 제외한 세로 높이 */
+    box-shadow: 2px 0 5px rgba(0,0,0,0.1); /* 약간의 그림자 효과 */
+    position: fixed; /* 고정된 위치로 설정하여 스크롤 시에도 고정 */
+    top: 80px; /* 상단 네비게이션 바로부터 60px 아래로 설정 */
+    left: 0; /* 왼쪽에 고정 */
+}
+
+.menu-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.menu-item {
+    margin-bottom: 15px; /* 메뉴 항목 간격 */
+}
+
+.menu-item a {
+    color: var(--text-color); /* 글자색을 흰색으로 */
+    text-decoration: none; /* 밑줄 제거 */
+    font-size: 18px;
+}
+
+.menu-item a:hover {
+    color: var(--mypage-menubar); /* 마우스를 올렸을 때 색상 변경 */
+}
+
+.content {
+    flex-grow: 1; /* 나머지 공간을 차지하도록 */
+    padding: 20px;
+    margin-left: 200px; /* 세로 메뉴바의 너비만큼 중앙 콘텐츠를 왼쪽으로 밀기 */
+}
