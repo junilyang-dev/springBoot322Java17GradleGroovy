@@ -180,4 +180,48 @@ public class UserController {
         }
         return ResponseEntity.ok(resultMap);
     }
+
+    @GetMapping("/userinfo")
+    @Operation(summary = "회원정보 조회", description = "회원정보 조회")
+    public ResponseEntity<Map<String, Object>> userInfo(HttpServletRequest request) {
+        Map<String, Object> resultMap = new HashMap<>();
+        // JWT 토큰 검증 시작
+        String authorizationHeader = request.getHeader("Authorization"); // 요청 헤더에서 Authorization 헤더 값을 가져옴
+        if (authorizationHeader == null || !authorizationHeader.startsWith("Bearer ")) { // Authorization 헤더가 없거나 Bearer로 시작하지 않으면
+            resultMap.put("success", false);
+            resultMap.put("message", "Authorization 헤더가 없거나 잘못되었습니다.");
+            resultMap.put("data", "");
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(resultMap); // 401 Unauthorized 응답
+        }
+
+        String jwtToken = authorizationHeader.substring(7); // "Bearer " 다음의 토큰 부분만 추출
+        boolean tokenChk;
+        try {
+            tokenChk = JwtUtil.validateToken(jwtToken); // 토큰을 검증
+        } catch (ExpiredJwtException e) { // 토큰 만료 시 예외 처리
+            resultMap.put("success", false);
+            resultMap.put("message", "토큰 만료");
+            resultMap.put("data", "");
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(resultMap); // 401 Unauthorized 응답
+        } catch (Exception e) { // 기타 예외 처리
+            resultMap.put("success", false);
+            resultMap.put("message", "유효하지 않은 토큰입니다.");
+            resultMap.put("data", "");
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(resultMap); // 401 Unauthorized 응답
+        }
+
+        if (tokenChk) {
+            String userId = JwtUtil.getUserIdFromToken(jwtToken); // 토큰에서 사용자 ID를 추출
+            UserEntity userEntity = userService.getUserByUserId(userId);
+            resultMap.put("success", true);
+            resultMap.put("message", "");
+            resultMap.put("data", userEntity);
+            return ResponseEntity.ok(resultMap);
+        } else {
+            resultMap.put("success", false);
+            resultMap.put("message", "유효하지 않은 토큰입니다.");
+            resultMap.put("data", "");
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(resultMap); // 401 Unauthorized 응답
+        }
+    }
 }
