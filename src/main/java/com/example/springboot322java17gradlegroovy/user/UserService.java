@@ -95,4 +95,11 @@ public class UserService {
     public boolean checkUserIdDuplicate(String userId) {
         return userRepository.existsByUserId(userId);
     }
+
+    public UserEntity updateUserInfo(UserEntity userEntity, UserUpdateRequest userUpdateRequest) {
+        userEntity.setEmail(userUpdateRequest.getEmail());
+        userEntity.setTel(userUpdateRequest.getTel());
+        userEntity = userRepository.save(userEntity);
+        return userEntity;
+    }
 }

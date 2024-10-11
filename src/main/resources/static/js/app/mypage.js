@@ -38,7 +38,7 @@ let userInfo = {
                         <label for="tel">Tel</label>
                         <input type="tel" id="tel" value="${userInfo.tel}" class="form-control" />
                     </div>
-                    <button type="button" class="btn btn-primary" onclick="updateUserInfo()">정보 수정</button>
+                    <button type="button" class="btn btn-primary" onclick="userInfo.updateUserInfo()">정보 수정</button>
                 </form>
             `;
                 } else {
@@ -46,6 +46,30 @@ let userInfo = {
                 }
             })
             .catch(error => console.error('Error:', error));
-    }
+    },
+
+    updateUserInfo() {
+            const email = document.getElementById('email').value;
+            const tel = document.getElementById('tel').value;
+
+            // 업데이트 API 호출
+            fetch('/api/v1/user/updateinfo', {
+                method: 'PUT',
+                headers: {
+                    'Authorization': 'Bearer ' + localStorage.getItem('accessToken'),  // 적절한 토큰 설정 필요
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ email, tel })
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        showToast(data.message);
+                    } else {
+                        showToast(data.message);
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+    },
 };
 document.addEventListener('DOMContentLoaded', () => myPage.init());
