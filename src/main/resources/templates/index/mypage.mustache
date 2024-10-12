@@ -22,6 +22,29 @@
     </div>
 </div>
 
+<!-- 비밀번호 변경 팝업 창 -->
+<div id="passwordPopup" class="popup">
+    <div class="popup-content">
+        <span class="close-btn" onclick="userInfo.closePopup()">&times;</span>
+        <h2>비밀번호 변경</h2>
+        <form id="passwordForm">
+            <div class="form-group">
+                <label for="currentPassword">현재 비밀번호</label>
+                <input type="password" id="currentPassword" class="form-control" required />
+            </div>
+            <div class="form-group">
+                <label for="newPassword">새 비밀번호</label>
+                <input type="password" id="newPassword" class="form-control" required />
+            </div>
+            <div class="form-group">
+                <label for="confirmNewPassword">새 비밀번호 확인</label>
+                <input type="password" id="confirmNewPassword" class="form-control" required />
+            </div>
+            <button type="button" class="btn btn-primary" onclick="submitPasswordChange()">비밀번호 변경</button>
+        </form>
+    </div>
+</div>
+
 {{>utility/toast}}
 <!-- 스크립트 로드 -->
 <script src="/js/app/mypage.js"></script>

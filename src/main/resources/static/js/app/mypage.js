@@ -28,7 +28,7 @@ let userInfo = {
                     </div>
                     <div class="form-group">
                         <label for="password">Password</label>
-                        <button type="button" class="btn btn-warning" onclick="changePassword()">비밀번호 변경</button>
+                        <button type="button" class="btn btn-warning" onclick="userInfo.changePassword()">비밀번호 변경</button>
                     </div>
                     <div class="form-group">
                         <label for="email">Email</label>
@@ -49,27 +49,35 @@ let userInfo = {
     },
 
     updateUserInfo() {
-            const email = document.getElementById('email').value;
-            const tel = document.getElementById('tel').value;
+        const email = document.getElementById('email').value;
+        const tel = document.getElementById('tel').value;
 
-            // 업데이트 API 호출
-            fetch('/api/v1/user/updateinfo', {
-                method: 'PUT',
-                headers: {
-                    'Authorization': 'Bearer ' + localStorage.getItem('accessToken'),  // 적절한 토큰 설정 필요
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ email, tel })
+        // 업데이트 API 호출
+        fetch('/api/v1/user/updateinfo', {
+            method: 'PUT',
+            headers: {
+                'Authorization': 'Bearer ' + localStorage.getItem('accessToken'),  // 적절한 토큰 설정 필요
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ email, tel })
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    showToast(data.message);
+                } else {
+                    showToast(data.message);
+                }
             })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        showToast(data.message);
-                    } else {
-                        showToast(data.message);
-                    }
-                })
-                .catch(error => console.error('Error:', error));
+            .catch(error => console.error('Error:', error));
     },
+
+    changePassword() {
+        document.getElementById('passwordPopup').style.display = 'block';
+    },
+
+    closePopup() {
+        document.getElementById('passwordPopup').style.display = 'none';
+    }
 };
 document.addEventListener('DOMContentLoaded', () => myPage.init());
