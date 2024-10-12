@@ -24,7 +24,7 @@ let userInfo = {
                 <form id="userInfoForm">
                     <div class="form-group">
                         <label for="userId">ID</label>
-                        <input type="text" id="userId" value="${userInfo.id}" class="form-control" disabled />
+                        <input type="text" id="userId" value="${userInfo.userId}" class="form-control" disabled />
                     </div>
                     <div class="form-group">
                         <label for="password">Password</label>
