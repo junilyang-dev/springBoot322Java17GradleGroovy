@@ -94,6 +94,11 @@ let userCheck = {
                     clearInterval(userCheck.timerInterval);
                     userCheck.timerInterval = null;
                     this.setNavbarButtons(false);  // 로그아웃 후 네비바 설정
+
+                    if(location.pathname.includes("mypage")) {
+                        localStorage.setItem('myPageOut', "Y");
+                        window.location.href = "/";
+                    }
                 }
             })
             .catch(error => {
